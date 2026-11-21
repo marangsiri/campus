@@ -1394,6 +1394,41 @@ button:disabled{cursor:default}
 
 .qp-grid strong{font-size:28px!important}@media(max-width:700px){.qp-grid strong{font-size:20px!important}}
 @media(max-width:700px){.quest-players{grid-template-columns:1fr!important}.quest-player{flex-wrap:nowrap}.qp-info{flex-basis:auto}.quest-player .av{width:46px;height:56px}.qp-grid{grid-template-columns:repeat(3,1fr)}.qp-grid>span{text-align:center}}
+
+/* ===== Winner reveal ===== */
+#s-winner{background:radial-gradient(ellipse at 50% 30%,#FFF3C4 0%,#FFD98A 45%,#F7A8C4 100%);overflow:auto;place-items:initial}
+#s-winner.on{display:block}
+.wn-rays{position:absolute;inset:-50%;background:repeating-conic-gradient(from 0deg at 50% 45%,#FFFFFF55 0 8deg,transparent 8deg 20deg);animation:wnSpin 40s linear infinite;pointer-events:none}
+@keyframes wnSpin{to{transform:rotate(360deg)}}
+.wn-stage{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;text-align:center;font-family:var(--fT)}
+.wn-drum h2{font-family:var(--fD);font-size:clamp(34px,7vw,64px);color:#8A4B12;margin:8px 0 0;text-shadow:0 3px 0 #fff}
+.wn-drum p{margin:6px 0 14px;font-size:20px;color:#7B5A2A;font-weight:700}
+.wn-drum{cursor:pointer}
+.wn-drum-ico{font-size:clamp(70px,14vw,120px);animation:wnBeat .35s ease-in-out infinite alternate}
+@keyframes wnBeat{to{transform:scale(1.18) rotate(8deg)}}
+.wn-dots i{display:inline-block;width:14px;height:14px;margin:0 5px;border-radius:50%;background:#E9A13B;animation:wnDot 1s ease-in-out infinite}
+.wn-dots i:nth-child(2){animation-delay:.2s}.wn-dots i:nth-child(3){animation-delay:.4s}
+@keyframes wnDot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-10px);opacity:1}}
+.wn-reveal{width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:12px}
+.wn-reveal[hidden]{display:none}
+.wn-kicker{font-family:var(--fD);font-size:clamp(24px,5vw,34px);color:#C0392B;text-shadow:0 2px 0 #fff;animation:wnPop .6s cubic-bezier(.2,1.6,.4,1) both}
+.wn-people{display:flex;justify-content:center;gap:10px;animation:wnJump .9s .15s cubic-bezier(.2,1.5,.4,1) both}
+.wn-person{display:flex;flex-direction:column;align-items:center}
+.wn-person img{height:clamp(190px,34vh,320px);width:auto;filter:drop-shadow(0 12px 14px rgba(120,60,10,.35))}
+.wn-person b{margin-top:2px;background:#fff;border:3px solid #E9A13B;border-radius:18px;padding:3px 18px;font-family:var(--fD);font-size:24px;color:#8A4B12;box-shadow:0 4px 0 #D4892A}
+@keyframes wnJump{0%{opacity:0;transform:translateY(80px) scale(.3)}60%{transform:translateY(-18px) scale(1.08)}100%{opacity:1;transform:none}}
+@keyframes wnPop{from{opacity:0;transform:scale(.3)}}
+.wn-title{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#FFE27A,#F7B733);border:3px solid #fff;border-radius:22px;padding:8px 22px 8px 14px;box-shadow:0 6px 0 #C98912,0 14px 24px rgba(150,90,10,.3);animation:wnPop .6s .6s cubic-bezier(.2,1.6,.4,1) both}
+.wn-title-ico{font-size:42px}.wn-title b{display:block;font-family:var(--fD);font-size:clamp(24px,5vw,32px);color:#6B3A07;text-align:left}.wn-title small{display:block;font-size:18px;font-weight:800;color:#8A4B12;text-align:left}
+.wn-why{list-style:none;margin:0;padding:0;display:grid;gap:7px;width:100%}
+.wn-why li{display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:9px 14px;font-size:17px;font-weight:700;color:#4A3A22;text-align:left;box-shadow:0 3px 0 #EBD9B6;animation:wnSlide .5s calc(1s + var(--k) * .22s) cubic-bezier(.2,1.3,.4,1) both}
+.wn-why li span{font-size:24px}
+@keyframes wnSlide{from{opacity:0;transform:translateX(-40px)}}
+.wn-net{background:#fff;border:3px solid #59BEEB;border-radius:22px;padding:10px 20px;width:100%;box-shadow:0 5px 0 #2875A2;animation:wnPop .6s 1.9s cubic-bezier(.2,1.6,.4,1) both}
+.wn-net small{display:block;font-size:16px;font-weight:700;color:#5A6B7E}.wn-net b{display:block;font-family:var(--fD);font-size:clamp(44px,10vw,64px);color:#1F6FD1;line-height:1.05}.wn-net em{font-style:normal;font-size:.4em;color:#5A6B7E}.wn-eq{display:block;font-size:15px;color:#6B7B8E;font-weight:700}
+.wn-go{margin-top:6px;font-size:20px;animation:wnPop .5s 2.4s both,sp3Pulse 1.6s 3s ease-in-out infinite}
+@media(max-width:600px){.wn-person img{height:clamp(150px,26vh,230px)}.wn-why li{font-size:15px;padding:7px 12px}.wn-title-ico{font-size:34px}}
+@media(prefers-reduced-motion:reduce){.wn-rays,.wn-drum-ico,.wn-dots i,.wn-reveal *{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1411,6 +1446,7 @@ button:disabled{cursor:default}
   <section class="screen" id="s-event"></section>
   <section class="screen" id="s-shop"></section>
   <section class="screen" id="s-dash"></section>
+  <section class="screen" id="s-winner"></section>
   <section class="screen" id="s-results"></section>
   <section class="screen" id="s-print"></section>
 </main>
@@ -2705,7 +2741,7 @@ function downloadReport() {
   rows.push(['Money Matters: Campus Cash Quest — รายงานผลผู้เล่น', '', 'วันที่', stamp, 'รอบ', G.round]);
   rows.push([]);
   rows.push(['อันดับ', 'ชื่อผู้เล่น', 'ตัวละคร', 'Speaking ผ่าน (ใบ)', 'Listening ผ่าน (ใบ)', 'คะแนนเฉลี่ย Speaking %', 'คะแนนเฉลี่ย Listening %', 'จำนวนครั้งที่เล่น', 'ครั้งที่ไม่ผ่าน', 'แก้มือ (ครั้ง)', 'การ์ดค้าง',
-    'เงินในกระเป๋า', 'เงินออม', 'ดอกเบี้ยที่ได้', 'มูลค่าสินค้า', 'สินค้า (ชิ้น)', 'บิลค้าง', 'หนี้ธนาคารคงค้าง', 'จำนวนครั้งที่ยืม', 'ทรัพย์สินสุทธิ', 'ดาวการเงิน (1-5)']);
+    'เงินในกระเป๋า', 'เงินออม', 'ดอกเบี้ยที่ได้', 'ใช้ซื้อของไป (ไม่นับคะแนน)', 'สินค้า (ชิ้น)', 'บิลค้าง', 'หนี้ธนาคารคงค้าง', 'จำนวนครั้งที่ยืม', 'เงินสุทธิ', 'ดาวการเงิน (1-5)']);
   R.forEach((r, i) => { const p = r.p, st = p.st, f = financeStars(p);
     rows.push([i + 1, p.name, CHAR(p.char).name, st.sp, st.li, avg(st.spS), avg(st.liS), st.att, st.fails, st.retries, p.pending.length,
       wallet(p), savingsOf(p), p.interest || 0, r.value, p.items.length, billsDue(p), loanDue(p), (p.loans || []).length, r.net, f.stars]); });
@@ -2880,7 +2916,7 @@ function showShop() {
     <div class="shopfront">
       <div class="shopsign"><div class="awning"></div><div class="signboard">CAMPUS SHOP<small>ร้านค้าในมหาวิทยาลัย</small></div></div>
       <div class="keeper" id="keeper"><div class="kbubble" id="kb"><span class="spk">${I.sndOn}</span><span><b>${KEEPER_LINES[0][0]}</b><small class="th">${KEEPER_LINES[0][1]}</small></span></div>
-        <div class="keeper-stage"><img class="keeper-person" data-character="keeper" src="${prodSrc('keeper')}" alt="Mr. Tun · มิสเตอร์ตุล คนขายของ"></div><span class="kname">Mr. Tun · มิสเตอร์ตุล</span></div>
+        <div class="keeper-stage"><img class="keeper-person" data-character="keeper" src="${prodSrc('keeper')}" alt="Mr. Tun · มิสเตอร์ตุลย์ คนขายของ"></div><span class="kname">Mr. Tun · มิสเตอร์ตุลย์</span></div>
       <div class="shopper ${['ken','tae','leo'].includes(p.char) ? 'face-right' : ''}">${chibi(p.char, 'a-sway')}<div class="pchip now">${av(p)}<div>${esc(p.name)}<div class="w">Wallet ${COIN} <b>${w}</b> · ${p.items.length}/${PRODUCTS.length} items</div></div></div></div>
     </div>
     ${task}
@@ -3005,10 +3041,59 @@ function itemValue(p) { return sum(PRODUCTS.filter(pr => p.items.includes(pr.id)
 function ranking() {
   return G.players.map(p => {
     const value = itemValue(p), w = wallet(p), sv = savingsOf(p), debt = billsDue(p) + loanDue(p);
-    return {p, items:p.items.length, passed:p.st.sp+p.st.li, w, sv, value, debt, unpaid:unpaid(p).length + loansOpen(p).length, total:value+w+sv, net:value+w+sv-debt};
+    return {p, items:p.items.length, passed:p.st.sp+p.st.li, w, sv, value, debt, unpaid:unpaid(p).length + loansOpen(p).length, total:w+sv, net:w+sv-debt};
   }).sort((a,b) => (a.unpaid>0)-(b.unpaid>0) || b.net-a.net || b.passed-a.passed);
 }
-function endGame() { G.over = true; save(); sfx('fanfare'); showResults(); }
+function endGame() { G.over = true; save(); showWinner(); }
+
+/* ---------------- WINNER REVEAL (drumroll -> winner pops up -> why they won -> go to ranking) ---------------- */
+function winnerTitle(r, R) {
+  const p = r.p, maxSv = Math.max(...R.map(x => x.sv)), maxPass = Math.max(...R.map(x => x.passed)), minVal = Math.min(...R.map(x => x.value));
+  const noLoan = !(p.loans || []).length && r.unpaid === 0, chips = [];
+  if (r.sv > 0 && r.sv === maxSv) chips.push(['🐷', `ออมเงินได้มากที่สุด ${r.sv} Coins`]);
+  if ((p.interest || 0) > 0) chips.push(['⭐', `ได้ดอกเบี้ยจากการออม ${p.interest} Coins`]);
+  if (noLoan) chips.push(['🛡️', 'ไม่เคยเป็นหนี้ธนาคารเลย']); else if (r.unpaid === 0) chips.push(['✅', 'ใช้หนี้หมดแล้ว ไม่มีหนี้ค้าง']);
+  if (r.passed > 0 && r.passed === maxPass) chips.push(['🎯', `ผ่านภารกิจมากที่สุด ${r.passed} ใบ`]);
+  if (r.value === minVal && R.length > 1) chips.push(['🧠', 'ใช้เงินกับของฟุ่มเฟือยน้อยที่สุด']);
+  let t = ['🏆', 'Money Planner', 'นักวางแผนการเงินตัวจริง'];
+  if (r.sv > 0 && r.sv === maxSv && (p.interest || 0) > 0) t = ['👑', 'Super Saver', 'สุดยอดนักออม'];
+  else if (noLoan) t = ['🛡️', 'Debt-Free Hero', 'ฮีโร่ไร้หนี้'];
+  else if (r.passed > 0 && r.passed === maxPass) t = ['🎯', 'Quest Master', 'ยอดนักภารกิจ'];
+  else if (r.value === minVal && R.length > 1) t = ['🧠', 'Smart Spender', 'นักใช้เงินอย่างฉลาด'];
+  if (!chips.length) chips.push(['💪', 'บริหารเงินได้ดีที่สุดในกลุ่ม']);
+  return { icon: t[0], en: t[1], th: t[2], chips: chips.slice(0, 4) };
+}
+function showWinner() {
+  const s = $('#s-winner'), R = ranking(), top = R[0];
+  const winners = R.filter(r => (r.unpaid > 0) === (top.unpaid > 0) && r.net === top.net && r.passed === top.passed);
+  const t = winnerTitle(top, R), names = winners.map(r => esc(r.p.name)).join(' & ');
+  s.innerHTML = `<div class="wn-rays"></div><div class="wn-stars"></div>
+    <div class="wn-stage">
+      <div class="wn-drum" id="wnDrum"><div class="wn-drum-ico">🥁</div><h2>And the winner is...</h2><p class="th">ใครจะเป็นผู้ชนะ?</p><div class="wn-dots"><i></i><i></i><i></i></div></div>
+      <div class="wn-reveal" id="wnReveal" hidden>
+        <span class="wn-kicker">${winners.length > 1 ? '🎉 ผู้ชนะร่วม 🎉' : '🎉 ผู้ชนะ 🎉'}</span>
+        <div class="wn-people">${winners.map(r => `<div class="wn-person"><img data-character="${r.p.char}" src="${charSrc(r.p.char)}" alt="${esc(r.p.name)}"><b>${esc(r.p.name)}</b></div>`).join('')}</div>
+        <div class="wn-title"><span class="wn-title-ico">${t.icon}</span><div><b>${t.en}</b><small>${t.th}</small></div></div>
+        <ul class="wn-why">${t.chips.map(([i, x], k) => `<li style="--k:${k}"><span>${i}</span>${x}</li>`).join('')}</ul>
+        <div class="wn-net"><small>เงินสุทธิของ ${names}</small><b><span id="wnNum">0</span> <em>Coins</em></b><span class="wn-eq">เงินเหลือ ${top.w} + เงินออม ${top.sv}${top.debt ? ` − หนี้ ${top.debt}` : ''}</span></div>
+        <button class="btn butter wn-go" id="wnGo">ดูลำดับการแข่งขัน · See Ranking →</button>
+      </div></div>`;
+  show('winner'); sfx('fanfare');
+  const rm = S.rm, reveal = $('#wnReveal', s), drum = $('#wnDrum', s);
+  let done = false;
+  const open = () => {
+    if (done) return; done = true;
+    drum.hidden = true; reveal.hidden = false; reveal.classList.add('go');
+    sfx('coin'); if (!rm) { confetti(140); setTimeout(() => confetti(90), 900); }
+    if (S.sound) speak(`${winners.map(r => r.p.name).join(' and ')}, ${t.en}!`, { g: CHAR(top.p.char).g });
+    const num = $('#wnNum', s), end = top.net, t0 = performance.now(), dur = rm ? 0 : 1400;
+    const tick = now => { const k = dur ? Math.min(1, (now - t0) / dur) : 1; num.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
+    setTimeout(() => requestAnimationFrame(tick), rm ? 0 : 700);
+  };
+  setTimeout(open, rm ? 0 : 2600);
+  drum.onclick = open;
+  $('#wnGo', s).onclick = () => { sfx('coin'); showResults(); };
+}
 function showResults() {
   const s = $('#s-results'), R = ranking(), win = R[0];
   const same = (a,b) => a && b && (a.unpaid>0)===(b.unpaid>0) && a.net===b.net && a.passed===b.passed;
@@ -3016,11 +3101,11 @@ function showResults() {
   const rows=R.map((r,i) => {if(i&&!same(r,R[i-1]))place=i+1;return {...r,place};});
   const winners=rows.filter(r=>r.place===1), names=winners.map(r=>esc(r.p.name)).join(' และ ');
   const clear=win.unpaid===0;
-  const reason = clear ? `ไม่มีหนี้ค้าง และมีทรัพย์สินสุทธิ ${win.net} Coins` : `ทุกคนยังมีหนี้ค้าง · มีทรัพย์สินสุทธิหลังหักหนี้ ${win.net} Coins`;
+  const reason = clear ? `ไม่มีหนี้ค้าง และมีเงินสุทธิ ${win.net} Coins` : `ทุกคนยังมีหนี้ค้าง · มีเงินสุทธิหลังหักหนี้ ${win.net} Coins`;
   const history=G.history||[];
   s.innerHTML=`<div class="results-shell"><div class="home-strip">${homeButton()}</div><header class="results-header"><span class="eyebrow">CAMPUS CASH QUEST · FINAL RESULTS</span><h1>จบเกมแล้ว! 🎉</h1><p>ใครวางแผนเงินได้ดีที่สุดในแคมปัส?</p></header>
-    <section class="winner-panel"><div class="winner-portraits">${winners.map(r=>`<img data-character="${r.p.char}" src="${charSrc(r.p.char)}" alt="${esc(r.p.name)} เต็มตัว">`).join('')}</div><div class="winner-copy"><span class="home-sticker">✦ ${winners.length>1?'ผู้ชนะร่วม':'ผู้ชนะ'}</span><h2>${names}</h2><p>${reason}</p><div class="winner-sum"><span>สินค้า <b>${win.value}</b></span><i>+</i><span>เงินเหลือ <b>${win.w}</b></span><i>+</i><span>เงินออม <b>${win.sv}</b></span><i>−</i><span>หนี้ค้าง <b>${win.debt}</b></span><i>=</i><span class="total">สุทธิ <b>${win.net}</b></span></div><p class="winner-reason">${winners.length>1?'ทรัพย์สินสุทธิและจำนวนภารกิจที่ผ่านเท่ากัน จึงชนะร่วมกัน':clear&&rows.some(r=>r.unpaid>0)?'มีสิทธิ์ชนะก่อนผู้ที่ยังมีหนี้ค้าง จากนั้นเปรียบเทียบทรัพย์สินสุทธิและภารกิจที่ผ่าน':'จัดอันดับจากสถานะบิล ทรัพย์สินสุทธิ และภารกิจที่ผ่านเมื่อมูลค่าเท่ากัน'}</p></div></section>
-    <section class="results-finance"><h2>สรุปการจัดการเงินทุกคน</h2><div class="finance-table"><table><thead><tr><th>อันดับ / ผู้เล่น</th><th>มูลค่าสินค้า</th><th>เงินเหลือ</th><th>เงินออม</th><th>หนี้ค้าง</th><th>ทรัพย์สินสุทธิ</th><th>ภารกิจผ่าน</th></tr></thead><tbody>${rows.map(r=>`<tr class="${r.place===1?'winner-row':''}"><th>${r.place}. ${esc(r.p.name)}<small>${r.unpaid?'มีหนี้ค้าง':'ไม่มีหนี้ค้าง'}</small></th><td>${r.value}<small>${r.items} ชิ้น</small></td><td>${r.w}</td><td>${r.sv}</td><td>${r.debt}</td><td><b>${r.net}</b></td><td>${r.passed}</td></tr>`).join('')}</tbody></table></div><p class="results-method">เกณฑ์: ไม่มีหนี้ค้างก่อน (บิลค้าง + หนี้ธนาคาร) → ทรัพย์สินสุทธิสูงที่สุด → ภารกิจที่ผ่านมากกว่า หากเท่ากันให้ชนะร่วม<br>ทรัพย์สินสุทธิ = มูลค่าสินค้าตามราคาในร้าน + เงินเหลือ + เงินออม − หนี้ค้าง · เหตุการณ์ให้ผลเฉพาะผู้ที่เปิดเจอการ์ดนั้น</p></section>
+    <section class="winner-panel"><div class="winner-portraits">${winners.map(r=>`<img data-character="${r.p.char}" src="${charSrc(r.p.char)}" alt="${esc(r.p.name)} เต็มตัว">`).join('')}</div><div class="winner-copy"><span class="home-sticker">✦ ${winners.length>1?'ผู้ชนะร่วม':'ผู้ชนะ'}</span><h2>${names}</h2><p>${reason}</p><div class="winner-sum"><span>เงินเหลือ <b>${win.w}</b></span><i>+</i><span>เงินออม <b>${win.sv}</b></span><i>−</i><span>หนี้ค้าง <b>${win.debt}</b></span><i>=</i><span class="total">สุทธิ <b>${win.net}</b></span></div><p class="winner-reason">${winners.length>1?'เงินสุทธิและจำนวนภารกิจที่ผ่านเท่ากัน จึงชนะร่วมกัน':clear&&rows.some(r=>r.unpaid>0)?'มีสิทธิ์ชนะก่อนผู้ที่ยังมีหนี้ค้าง จากนั้นเปรียบเทียบเงินสุทธิและภารกิจที่ผ่าน':'จัดอันดับจากสถานะบิล เงินสุทธิ และภารกิจที่ผ่านเมื่อมูลค่าเท่ากัน'}</p></div></section>
+    <section class="results-finance"><h2>สรุปการจัดการเงินทุกคน</h2><div class="finance-table"><table><thead><tr><th>อันดับ / ผู้เล่น</th><th>เงินเหลือ</th><th>เงินออม</th><th>หนี้ค้าง</th><th>เงินสุทธิ</th><th>ใช้ซื้อของไป</th><th>ภารกิจผ่าน</th></tr></thead><tbody>${rows.map(r=>`<tr class="${r.place===1?'winner-row':''}"><th>${r.place}. ${esc(r.p.name)}<small>${r.unpaid?'มีหนี้ค้าง':'ไม่มีหนี้ค้าง'}</small></th><td>${r.w}</td><td>${r.sv}</td><td>${r.debt}</td><td><b>${r.net}</b></td><td>${r.value}<small>${r.items} ชิ้น · ไม่นับคะแนน</small></td><td>${r.passed}</td></tr>`).join('')}</tbody></table></div><p class="results-method">เกณฑ์: ไม่มีหนี้ค้างก่อน (บิลค้าง + หนี้ธนาคาร) → เงินสุทธิสูงที่สุด → ภารกิจที่ผ่านมากกว่า หากเท่ากันให้ชนะร่วม<br>เงินสุทธิ = เงินเหลือ + เงินออม − หนี้ค้าง (ของที่ซื้อเป็นรายจ่าย ไม่นับเป็นคะแนน) · เหตุการณ์ให้ผลเฉพาะผู้ที่เปิดเจอการ์ดนั้น</p></section>
     ${reportCards()}
     <section class="results-answers"><h2>เฉลยและผลภารกิจ</h2><p class="results-method">${history.length} ครั้งที่เล่น · Speaking แสดงตัวอย่างคำตอบ คำตอบอื่นที่เข้าเกณฑ์ยอมรับได้</p>${history.length?history.map((h,i)=>`<details class="answer-entry"><summary><span>${i+1}. ${h.id} · ${esc(P(h.pid)?.name||h.pid)}</span><b class="${h.pass?'answer-pass':'answer-fail'}">${h.pass?'ผ่าน':'ไม่ผ่าน'} · ${h.score}%</b></summary><div class="answer-body"><p><b>${esc(h.question)}</b>${h.translation?`<small>${esc(h.translation)}</small>`:''}</p><p>${h.type==='SP'?'ระบบได้ยิน':'คำตอบที่เลือก'}: <b>${esc(h.response||'—')}</b></p><p>${h.type==='SP'&&h.mode==='qa'?'ตัวอย่างคำตอบ':'คำตอบที่ถูก'}: <b>${esc(h.answer)}</b></p>${h.audio?`<p>เสียงที่ฟัง: ${esc(h.audio)}</p>`:''}${h.script?`<p class="answer-script">${esc(h.script)}</p>`:''}<p>รางวัล ${h.earned} Coins${h.type==='SP'?` · พูด ${h.tries}/2 ครั้ง`:''}${h.event?` · มีเหตุการณ์เกิดขึ้น: ${esc(h.event.th)}${h.event.kind==='shop'?'':` ${h.event.good?'+':'−'}${h.event.amt} Coins`}`:''}</p></div></details>`).join(''):'<p>เกมที่บันทึกจากเวอร์ชันเดิมไม่มีประวัติเฉลยรายข้อ แต่ข้อมูลการเงินและคะแนนยังอยู่ครบ</p>'}</section>
     <div class="results-actions"><button class="btn mint" id="rsCsv">⬇ ดาวน์โหลดผล (Excel)</button><button class="btn sky" id="rsDash">ดูบัญชีผู้เล่น</button><button class="btn" id="rsAgain">เล่นใหม่</button></div><footer class="home-footer">ผลิตสื่อนี้โดย คุณครูสิรินันทา สุนทรศิลป์</footer></div>`;
@@ -3036,10 +3121,10 @@ function showRules() {
     <h4>1 · ถึงตาคุณ</h4><p>จั่วการ์ดกระดาษ 1 ใบ แล้วแตะรหัสเดียวกันในแอป คำถามจะเปิดทันที หรือแตะการ์ดแก้มือของตนเองใบไหนก็ได้ จ่ายบิลค้างได้ทุกตา</p>
     <h4>2 · ทำเพียงหนึ่งภารกิจ</h4><p><b>Speaking:</b> กดไมค์แล้วพูด ระบบรู้จำเสียงและให้คะแนนอัตโนมัติ ผ่านที่ 50% ขึ้นไป ครั้งแรกไม่ผ่านให้พูดคำถามเดิมได้อีกครั้ง รวมสูงสุด 2 ครั้งต่อหนึ่งตา ข้อผิดพลาดด้านไมค์หรือเครือข่ายไม่หักโอกาสพูด<br><b>Listening:</b> เสียงเริ่มเมื่อเปิดการ์ด กดฟังซ้ำได้ เลือกคำตอบหนึ่งข้อ ระบบตรวจทันที<br>ง่าย: หนึ่งคำ · กลาง: หนึ่งประโยค · ยาก: หนึ่งคำถามหรือฟังเรื่องสั้นแล้วตอบหนึ่งข้อ เนื้อหาสุ่มจากบทที่ 4</p>
     <h4>3 · เหรียญและการแก้มือ</h4><p>ผ่าน: EASY 20 · MEDIUM 50 · HARD 100 Coins รับรางวัลได้ใบละหนึ่งครั้ง ไม่ผ่าน: การ์ดเป็นของคุณ เก็บไว้แก้มือได้ <b>ไม่จำกัดจำนวนใบ</b> จะกลับมาแก้ตอนไหนก็ได้ที่ถึงตาคุณ หรือจะจั่วการ์ดใหม่ก็ได้</p>
-    <h4>4 · การ์ดเหตุการณ์ (Event Card)</h4><p>ทุกเกมจะซ่อนเหตุการณ์ไว้ในการ์ด 10 จาก 20 ใบ เมื่อตอบการ์ดใบนั้นครั้งแรกเสร็จ (ผ่านหรือไม่ผ่านก็ได้) จะเปิดหน้าเหตุการณ์ให้แตะเปิดการ์ด<br>😊 <b>โชคดี</b>: ทุนการศึกษา · โบนัสงานพิเศษ · รางวัลแฮกกาธอน · ดอกเบี้ยเงินออม · รางวัลประกวด<br>😥 <b>โชคร้าย</b>: ค่าหอ · ค่าน้ำค่าไฟ · ค่าอินเทอร์เน็ต · ค่าโทรศัพท์ (ถ้าเงินไม่พอ ต้องยืมเงินธนาคาร)<br>🛍️ <b>ช้อปปิ้ง</b>: ต้องเข้าร้านไปซื้อของ 1 หรือ 2 ชิ้นตามการ์ด ถ้าเงินไม่พอ ต้องยืมเงินธนาคาร · <b>ร้านค้าเปิดเฉพาะตอนเปิดเจอการ์ดช้อปปิ้งเท่านั้น</b></p>
+    <h4>4 · การ์ดเหตุการณ์ (Event Card)</h4><p>ทุกเกมจะซ่อนเหตุการณ์ไว้ในการ์ด 10 จาก 20 ใบ เมื่อตอบการ์ดใบนั้นครั้งแรกเสร็จ (ผ่านหรือไม่ผ่านก็ได้) จะเปิดหน้าเหตุการณ์ให้แตะเปิดการ์ด<br>😊 <b>โชคดี</b>: ทุนการศึกษา · โบนัสงานพิเศษ · รางวัลแฮกกาธอน · ดอกเบี้ยเงินออม · รางวัลประกวด<br>😥 <b>โชคร้าย</b>: ค่าหอ · ค่าน้ำค่าไฟ · ค่าอินเทอร์เน็ต · ค่าโทรศัพท์ (ถ้าเงินไม่พอ ต้องยืมเงินธนาคาร)<br>🛍️ <b>ช้อปปิ้ง</b>: ต้องเข้าร้านไปซื้อของ 1 หรือ 2 ชิ้นตามการ์ด ถ้าเงินไม่พอ ต้องยืมเงินธนาคาร · <b>ร้านค้าเปิดเฉพาะตอนเปิดเจอการ์ดช้อปปิ้งเท่านั้น</b> · ของที่ซื้อคือ <b>รายจ่าย</b> เงินออกจากกระเป๋าแล้วไม่กลับมา และ <b>ไม่ถูกนับเป็นคะแนน</b></p>
     <h4>5 · ธนาคารและหนี้</h4><p>เมื่อเงินไม่พอจ่ายบิลหรือซื้อของตามการ์ด ระบบจะเด้งให้ <b>ยืมเงินธนาคาร</b> เท่าที่ขาด และต้องคืนพร้อมดอกเบี้ย 10% (ยืม 30 คืน 33) กดปุ่ม 🏦 ธนาคาร ในตาของตนเพื่อคืนหนี้ได้ทุกเมื่อ หนี้ที่ยังไม่คืนจะถูกหักตอนจบเกม</p>
     <h4>6 · เงินออม 🐷</h4><p>กดปุ่ม 🐷 ออมเงิน เพื่อฝากเงินจากกระเป๋า ทุกครั้งที่ขึ้นรอบใหม่ เงินออมจะได้ดอกเบี้ย 5% (ต้องมีตั้งแต่ 10 Coins) ถอนออกมาใช้ได้ทุกเมื่อ ถ้าเงินไม่พอจ่าย จะถอนเงินออมมาจ่ายแทนการยืมธนาคารก็ได้ · ออมได้ดอกเบี้ย ยืมเสียดอกเบี้ย!</p>
-    <h4>7 · จบเกม</h4><p>การ์ดกลางหมดแล้วเล่นให้จบรอบ จัดอันดับตาม 1) ไม่มีหนี้ค้าง 2) ทรัพย์สินสุทธิ = มูลค่าสินค้า + เงินเหลือ + เงินออม − หนี้ (บิลค้าง + หนี้ธนาคาร) และทุกคนจะได้ใบสรุปการเงินส่วนตัวพร้อมคำแนะนำ 3) ภารกิจที่ผ่าน หากเท่ากันชนะร่วม ถ้าตานั้นไม่มีการ์ดที่ทำได้ จ่ายบิลแล้วกดส่งต่อได้</p>
+    <h4>7 · จบเกมและหาผู้ชนะ 🏆</h4><p>การ์ดกลางหมดแล้วเล่นให้จบรอบ ผู้ชนะคือคนที่วางแผนการเงินได้ดีที่สุด ดูจาก <b>เงินสุทธิ</b><br><b>เงินสุทธิ = เงินในกระเป๋า + เงินออม − หนี้ (บิลค้างจ่าย + หนี้ธนาคาร)</b><br>• <b>ของที่ซื้อไม่นับ</b> เป็นรายจ่าย ไม่ใช่ทรัพย์สิน ซื้อมากเงินก็เหลือน้อย<br>• ลำดับตัดสิน: 1) ไม่มีหนี้ค้าง 2) เงินสุทธิมากกว่า 3) ผ่านภารกิจมากกว่า ถ้าเท่ากันหมดชนะร่วม<br>• ตอนจบจะมีหน้า <b>ประกาศผู้ชนะ</b> พร้อมฉายา เช่น 👑 สุดยอดนักออม · 🛡️ ฮีโร่ไร้หนี้ · 🎯 ยอดนักภารกิจ แล้วกด "ดูลำดับการแข่งขัน" เพื่อดูทุกคน และทุกคนจะได้ใบสรุปการเงินส่วนตัวพร้อมคำแนะนำ<br>ถ้าตานั้นไม่มีการ์ดที่ทำได้ จ่ายบิลแล้วกดส่งต่อได้</p>
     <p class="assessment-note">การพูดประเมินจากข้อความที่เบราว์เซอร์รู้จำและเกณฑ์คำตอบในบทเรียน ไม่ใช่การวัดสำเนียงโดยตรง ต้องใช้เบราว์เซอร์ที่รองรับไมค์และบริการรู้จำเสียง</p>
     <button class="btn sky" data-close>เข้าใจแล้ว</button><p class="credit">ผลิตสื่อนี้โดย คุณครูสิรินันทา สุนทรศิลป์</p></div>`);
 }
